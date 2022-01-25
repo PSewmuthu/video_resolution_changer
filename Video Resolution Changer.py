@@ -13,7 +13,12 @@ class ResolutionChanger:
         
         _, frame = video.read()
         
-        video_name = self.path.split('\\')[-1]
+        if '\\' in self.path:
+            video_name = self.path.split('\\')[-1]
+        elif '/' in self.path:
+            video_name = self.path.split('/')[-1]
+        else:
+            video_name = self.path
         
         mode = ''
         if self.val > 1:
@@ -49,8 +54,8 @@ if __name__ == '__main__':
     path = input('Enter the path and name of the video: (ex: /video/example.mp4) ')
     val = float(input('Enter resolution changing value: (ex: 0.5) '))
     
-    if val < 0:
-        print('Negative values are not allowed!')
+    if val <= 0:
+        print('Negative or Zero values are not allowed!')
         sys.exit()
     elif val == 1.0:
         print('If changing value is 1, output video resolution will be same!')
