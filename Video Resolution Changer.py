@@ -1,4 +1,5 @@
 import cv2
+import sys
 
 class ResolutionChanger:
     def __init__(self, path, val):
@@ -43,3 +44,16 @@ class ResolutionChanger:
         cv2.destroyAllWindows()
         video_out.release()
         video.release()
+
+if __name__ == '__main__':
+    path = input('Enter the path and name of the video: (ex: /video/example.mp4) ')
+    val = float(input('Enter resolution changing value: (ex: 0.5) '))
+    
+    if val < 0:
+        print('Negative values are not allowed!')
+        sys.exit()
+    elif val == 1.0:
+        print('If changing value is 1, output video resolution will be same!')
+        sys.exit()
+    else:
+        ResolutionChanger(path, val)
